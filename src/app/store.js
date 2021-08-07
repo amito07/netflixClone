@@ -1,7 +1,9 @@
 import { createStore, combineReducers,applyMiddleware } from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {screenShowReducer} from '../Reducer/ScreenShowReducer'
-import {userRegisterReducer} from '../Reducer/userReducer'
+import {userRegisterReducer,userLoginReducer} from '../Reducer/userReducer'
+import {productListReducer,productInfoReducer} from '../Reducer/productReducer'
+import {orderCreateReducer} from '../Reducer/orderReducer'
 import thunk from 'redux-thunk';
 
 const userinfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
@@ -13,7 +15,11 @@ const initialState = {
 
 const reducer = combineReducers({
     screenShow : screenShowReducer,
-    userRegister:userRegisterReducer
+    userRegister:userRegisterReducer,
+    userLogin:userLoginReducer,
+    productList:productListReducer,
+    productInfo:productInfoReducer,
+    orderCreate:orderCreateReducer
 })
 
 //it is work as a middleware (thunk)

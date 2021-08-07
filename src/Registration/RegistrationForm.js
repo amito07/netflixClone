@@ -15,7 +15,7 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
     const userRegister = useSelector(state => state.userRegister)
-    const {loading , error , payload:userInfo} = userRegister
+    const {loading , error , userInfo} = userRegister
     console.log(userInfo);
     useEffect(() => {
         if(userInfo){

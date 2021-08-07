@@ -1,12 +1,12 @@
-.profileScreen{
+.payment_screen{
     height: 100vh;
     color: white;
 }
 
-.profileScreen_body{
+.payment_body{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 8%;
@@ -14,35 +14,25 @@
 
 }
 
-.profileScreen_body > h1{
+.payment_body > h1{
     font-size: 60px;
     font-weight: 400;
     border-bottom: 1px solid #282c2d;
     margin-bottom: 20px;
 }
 
-.profileScreen_info{
+.payment_info{
     display: flex;
 }
 
-.profileScreen_info > img {
-    height: 100px;
-}
-
-.profileScreen_details{
+.payment_details{
     color: white;
     margin-left: 25px;
     flex: 1;
 }
 
-.profileScreen_details > h2{
-    background-color: gray;
-    padding: 15px;
-    font-size: 15px;
-    padding-left: 20px;
-}
 
-.profileScreen_signout{
+.payment_signout{
     padding: 10px 20px;
     font-size: 1rem;
     margin-top: 5%;
@@ -53,30 +43,27 @@
     cursor: pointer;
 }
 
-.profileScreen_plans{
+.payment_plans{
     margin-top: 20px;
+    display: flex;
+    margin-left: -40px;
 }
 
-.profileScreen_plans > h3 {
-    border-bottom: 1px solid #282c2d;
-    padding-bottom: 10px;
-}
-
-.profileScreen_standard {
+.payment_standard {
     margin-top: 20px;
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
 
-.profileScreen_Basic{
+.payment_Basic{
     margin-top: 20px;
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
 
-.profileScreen_Premium{
+.payment_Premium{
     margin-top: 20px;
     align-items: center;
     display: flex;
@@ -104,7 +91,7 @@
     
 }
 
-.profileScreen_payment{
+.payment_payment{
     padding: 10px 20px;
     font-size: 1rem;
     margin-top: 5%;
@@ -116,6 +103,36 @@
     margin-left: 10px;
 }
 
+.card_item{
+    margin-left: 20px;
+    margin-top: -20px;
+}
+
+.payment_button{
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #e50914;
+    border: none;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.payment_button:hover{
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+}
+
+.listgroup{
+    margin-left: -15px;
+}
+
+.list_item{
+    font-size: 1rem;
+    font-weight: 600;
+
+}
 
 
 

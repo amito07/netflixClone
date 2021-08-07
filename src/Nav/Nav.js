@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
+import {useSelector} from 'react-redux'
 import "./Nav.css"
 
 function Nav() {
@@ -12,7 +13,8 @@ function Nav() {
             handleshow(false)
         }
     }
-
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
     useEffect(()=>{
         window.addEventListener("scroll",transitionalNav)
         return()=> window.removeEventListener("scroll",transitionalNav)
@@ -27,7 +29,7 @@ function Nav() {
                     <NavLink to='/profile'>
                     <img className="nav_avatar" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="ok"></img>
                     </NavLink>
-                    <h6 className='nav_username'>Amit Mandal</h6>
+                    <h6 className='nav_username'>{userInfo ? userInfo.name : ''}</h6>
                 </div>
                 
                     
