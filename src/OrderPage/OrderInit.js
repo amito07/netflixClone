@@ -16,6 +16,9 @@ function OrderInit({match}) {
     const productInfo = useSelector(state => state.productInfo)
     const {product} = productInfo
 
+    const orderCreate = useSelector(state => state.orderCreate)
+    const{order} = orderCreate
+
     const stripePromise = loadStripe('pk_test_51JKdXFBgykRasg0AMEmwmWCb6LgaM8o8gueqFk0qlDAkdYegUZADDvxwYehRSIN6BN8ONQbvs7iSgnxVAjFxjxoa00Bx0WPWT3')
     useEffect(() => {
         if(!userInfo){
@@ -24,20 +27,19 @@ function OrderInit({match}) {
         dispatch(listProductDetails(match.params.id))
     }, [dispatch,userInfo])
 
-    // if(product){
-    //     let str = product.price
-    //     // let res = str.replace(/USD/g, "");
-    //     // console.log("Product Price",res)
-    // }
 
     const handleSubmit = ()=>{
         dispatch(createOrder({
             orderItem: product,
-            totalPrice: product.price
+            totalPrice: product.price,
+            p_name: product.name
         }))
 
+        setTimeout(() => {
+            history.push(`/order/${match.params.id}`)
+        }, 3000);
+
     }
-    let str = product.price
 
     return (    
         <div className='Order_screen'>
@@ -52,7 +54,7 @@ function OrderInit({match}) {
                             <Card.Subtitle className="mb-2 text-muted mt-3">
                                 <h6 className="product_infos">{`Your Selected package is : ${product ? product.name : ''}`}</h6>
                                 <h6 className="product_infos">{`Your Selected package resolution : ${product ? product.resolution : ''}`}</h6>
-                                <h6 className="product_infos">{`Your Selected package price : ${product ? product.price : ''}`}</h6>
+                                <h6 className="product_infos">{`Your Selected package price : $ ${product ? product.price : ''}`}</h6>
                             </Card.Subtitle>
                             <Button className="orderButton"  type='submit' variant='contained' onClick={handleSubmit}> Start Now </Button>
                         </Card.Body>

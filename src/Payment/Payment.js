@@ -36,7 +36,7 @@ function Payment() {
                                         <ListGroup className="listgroup" variant="flush">
                                             <ListGroup.Item className="list_item">Video quality: {product.quality}</ListGroup.Item>
                                             <ListGroup.Item className="list_item">Resolution: {product.resolution}</ListGroup.Item>
-                                            <ListGroup.Item className="list_item">Monthly price: {product.price}</ListGroup.Item>
+                                            <ListGroup.Item className="list_item">Monthly price: USD {product.price}</ListGroup.Item>
                                         </ListGroup>
                                         <NavLink to={`/orderinit/${product._id}`}>
                                             <Button className="payment_button">Subscribe</Button>

@@ -3,7 +3,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {screenShowReducer} from '../Reducer/ScreenShowReducer'
 import {userRegisterReducer,userLoginReducer} from '../Reducer/userReducer'
 import {productListReducer,productInfoReducer} from '../Reducer/productReducer'
-import {orderCreateReducer} from '../Reducer/orderReducer'
+import {orderCreateReducer,orderPayReducer,orderMyListReducer} from '../Reducer/orderReducer'
 import thunk from 'redux-thunk';
 
 const userinfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
@@ -19,7 +19,9 @@ const reducer = combineReducers({
     userLogin:userLoginReducer,
     productList:productListReducer,
     productInfo:productInfoReducer,
-    orderCreate:orderCreateReducer
+    orderCreate:orderCreateReducer,
+    orderPay:orderPayReducer,
+    orderMyList:orderMyListReducer
 })
 
 //it is work as a middleware (thunk)

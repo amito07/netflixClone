@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav'
 import {useDispatch , useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {logout} from '../Action/userActions'
+import {listMyOrders} from '../Action/orderAction'
 import {NavLink} from "react-router-dom"
 
 function Profile() {
@@ -11,11 +12,18 @@ function Profile() {
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
+
+    const orderMyList = useSelector(state => state.orderMyList)
+    const {order} = orderMyList
+    console.log("User Info",userInfo);
+
     useEffect(() => {
         if(!userInfo){
             history.push('/')
         }
-    }, [userInfo])
+        dispatch(listMyOrders())
+
+    }, [dispatch,userInfo])
     const handleLogout = (e)=>{
         e.preventDefault();
         dispatch(logout())
@@ -38,19 +46,19 @@ function Profile() {
                 <div className="profileScreen_details">
                     <h2>{userInfo ? userInfo.email : ''}</h2>
                     <div className="profileScreen_plans">
-                        <h3>Plans (Current Plan: Premium)</h3>
+                        <h3>{order ? `Plans (Current Plan: ${order.p_name})` : `No package Selected` }</h3>
                         <h6>Renewal date: 29/07/2021</h6>
                         <div className="profileScreen_standard">
                             <p>Netflix Standard (1080p)</p>
-                            <button className="subs_button">Subscribe</button>
+                            <button className={`subs_button ${order && order.isPaid && order.p_name === "Standard" && "unsubs_button"}`} onClick={()=> history.push('/payment') } disabled={order && order.isPaid && order.p_name === "Standard"}>{order && order.isPaid && order.p_name === "Standard" ? 'Unsubscribe' : 'Subscribe' }</button>
                         </div>
                         <div className="profileScreen_Basic">
                             <p>Netflix Basic (480p)</p>
-                            <button className="subs_button">Subscribe</button>
+                            <button className={`subs_button ${order && order.isPaid && order.p_name === "Basic" && "unsubs_button"}`} onClick={()=> history.push('/payment') } disabled={order && order.isPaid && order.p_name === "Basic"}>{order && order.isPaid && order.p_name === "Basic" ? 'Unsubscribe' : 'Subscribe' }</button>
                         </div>
                         <div className="profileScreen_Premium">
                             <p>Netflix Premium (4K+ HDR)</p>
-                            <button className="subs_button">Subscribe</button>
+                            <button className={`subs_button ${order && order.isPaid && order.p_name === "Premium" && "unsubs_button"}`} onClick={()=> history.push('/payment')} disabled={order && order.isPaid && order.p_name === "Premium"}>{order && order.isPaid && order.p_name === "Premium" ? 'Unsubscribe' : 'Subscribe' }</button>
                         </div>
                         <div className="signout_payment">
                             <button className="profileScreen_signout" onClick={handleLogout}>Sign Out</button>
