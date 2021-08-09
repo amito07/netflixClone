@@ -3,13 +3,12 @@ import './Payment.css'
 import Nav from '../Nav/Nav'
 import {Card,Button,ListGroup} from 'react-bootstrap'
 import basic from '../images/Basic.PNG'
-import premium from '../images/Premium.PNG'
-import standard from '../images/Standard.PNG'
 import {useHistory} from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
 import {listProducts} from '../Action/productsAction'
 import { NavLink } from "react-router-dom"
-
+import Message from '../Notify/Message'
+import Loader from '../Notify/Loader'
 
 function Payment() {
     const history = useHistory()
@@ -20,6 +19,9 @@ function Payment() {
         dispatch(listProducts())  
     }, [dispatch])
     return (
+        <>
+        {error && <Message variant='danger'>{error}</Message>}
+        {loading && <Loader/>}
         <div className='payment_screen'>
             <Nav/>
             <div className="payment_body">
@@ -52,6 +54,8 @@ function Payment() {
             </div>
             
         </div>
+        
+        </>
     )
 }
 

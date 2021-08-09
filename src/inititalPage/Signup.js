@@ -3,6 +3,8 @@ import "./Signup.css"
 import {useDispatch , useSelector} from 'react-redux'
 import {NavLink,useHistory} from 'react-router-dom'
 import {login} from '../Action/userActions'
+import Message from '../Notify/Message'
+import Loader from '../Notify/Loader'
 const Signup = () => {
     const history = useHistory();
     const dispatch = useDispatch()
@@ -22,6 +24,9 @@ const Signup = () => {
         dispatch(login(email,password))
     }
     return(
+        <>
+        {error && <Message variant='danger'>{error}</Message>}
+        {loading && <Loader/>}
         <div className="LoginScreen">
             <div className="LoginScreen_background">
                 <img className="LoginScreen_logo" src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="imgasdasd"/>
@@ -54,7 +59,9 @@ const Signup = () => {
             </div>
 
             </div>
-        </div>       
+        </div>
+        
+        </>       
 )
 }
 

@@ -8,6 +8,7 @@ import {loadStripe} from '@stripe/stripe-js'
 import {listProductDetails} from '../Action/productsAction'
 import {payOrder} from '../Action/orderAction'
 import './Order.css'
+
 function Order({match}) {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -22,7 +23,6 @@ function Order({match}) {
 
 
     console.log("OrderId",order._id)
-
     const stripePromise = loadStripe('pk_test_51JKdXFBgykRasg0AMEmwmWCb6LgaM8o8gueqFk0qlDAkdYegUZADDvxwYehRSIN6BN8ONQbvs7iSgnxVAjFxjxoa00Bx0WPWT3')
     useEffect(() => {
         if(!userInfo){
@@ -34,8 +34,7 @@ function Order({match}) {
     const handleSubmit = async(event,elements,stripe)=>{
         event.preventDefault();
         setTimeout(() => {
-            history.push('/profile')
-            
+            history.push('/profile') 
         }, 6000);
 
         if(!stripe || !elements) return;

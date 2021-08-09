@@ -5,7 +5,8 @@ import {useDispatch , useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {logout} from '../Action/userActions'
 import {listMyOrders} from '../Action/orderAction'
-import {NavLink} from "react-router-dom"
+import Message from '../Notify/Message'
+import Loader from '../Notify/Loader'
 
 function Profile() {
     const history = useHistory()
@@ -14,7 +15,7 @@ function Profile() {
     const {userInfo} = userLogin
 
     const orderMyList = useSelector(state => state.orderMyList)
-    const {order} = orderMyList
+    const {loading,error,order} = orderMyList
     console.log("User Info",userInfo);
 
     useEffect(() => {
@@ -37,6 +38,9 @@ function Profile() {
         }
     }
     return (
+        <>
+        {error && <Message variant='danger'>{error}</Message>}
+        {loading && <Loader/>}
         <div className="profileScreen">
             <Nav/>
             <div className="profileScreen_body">
@@ -69,6 +73,9 @@ function Profile() {
                 </div>
             </div>
         </div>
+        
+        </>
+        
     )
 }
 

@@ -7,6 +7,8 @@ import {loadStripe} from '@stripe/stripe-js'
 import {listProductDetails} from '../Action/productsAction'
 import {createOrder} from '../Action/orderAction'
 import './OrderInit.css'
+import Message from '../Notify/Message'
+import Loader from '../Notify/Loader'
 function OrderInit({match}) {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -14,7 +16,7 @@ function OrderInit({match}) {
     const {userInfo} = userLogin
 
     const productInfo = useSelector(state => state.productInfo)
-    const {product} = productInfo
+    const {loading, error , product} = productInfo
 
     const orderCreate = useSelector(state => state.orderCreate)
     const{order} = orderCreate
@@ -41,7 +43,10 @@ function OrderInit({match}) {
 
     }
 
-    return (    
+    return (  
+        <>
+        {error && <Message variant='danger'>{error}</Message>}
+        {loading && <Loader/>}
         <div className='Order_screen'>
             <Nav/>  
             <div className="Order_body">
@@ -61,7 +66,10 @@ function OrderInit({match}) {
                     </Card>
             </div>
             
-        </div>  
+        </div>
+        
+        </>  
+  
     )
 }
 

@@ -3,7 +3,8 @@ import "./RegistrationForm.css"
 import {useDispatch , useSelector} from 'react-redux'
 import {NavLink,useHistory} from "react-router-dom"
 import {register} from '../Action/userActions'
-
+import Message from '../Notify/Message'
+import Loader from '../Notify/Loader'
 
 const RegisterForm = () => {
     const history = useHistory()
@@ -32,6 +33,9 @@ const RegisterForm = () => {
         dispatch(register(name,email,phone,address,password))
     }
     return (
+        <>
+        {error && <Message variant='danger'>{error}</Message>}
+        {loading && <Loader/>}
         <div className="registerScreen">
             <form onSubmit={submitHandle}>
                 <h1>Registration</h1>
@@ -62,6 +66,9 @@ const RegisterForm = () => {
                 </h4>
              </form>
         </div>
+        
+        </>
+        
     )
 }
 
