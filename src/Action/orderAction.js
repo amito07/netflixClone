@@ -58,7 +58,6 @@ export const payOrder = (orderId,paymentMethod)=>async(dispatch,getState)=>{
 
         //getting user data including tokens and so..........
         const {data} = await axios.put(`/api/orders/${orderId}/pay`,paymentMethod,config)
-        console.log("DATA Returned",data)
 
         dispatch({
             type: ORDER_PAY_SUCCESS,

@@ -37,6 +37,16 @@ function Profile() {
             history.push('/payment')
         }
     }
+
+    if(order){
+        var someDate = new Date(String(order.paidAt));
+        console.log("Date",someDate);
+        someDate.setDate(someDate.getDate() + 30);
+        var dateFormated = someDate.toISOString().substr(0,10);
+
+    }
+
+    
     return (
         <>
         {error && <Message variant='danger'>{error}</Message>}
@@ -51,7 +61,7 @@ function Profile() {
                     <h2>{userInfo ? userInfo.email : ''}</h2>
                     <div className="profileScreen_plans">
                         <h3>{order ? `Plans (Current Plan: ${order.p_name})` : `No package Selected` }</h3>
-                        <h6>Renewal date: 29/07/2021</h6>
+                        <h6>{`Renewal date: ${dateFormated}`}</h6>
                         <div className="profileScreen_standard">
                             <p>Netflix Standard (1080p)</p>
                             <button className={`subs_button ${order && order.isPaid && order.p_name === "Standard" && "unsubs_button"}`} onClick={()=> history.push('/payment') } disabled={order && order.isPaid && order.p_name === "Standard"}>{order && order.isPaid && order.p_name === "Standard" ? 'Unsubscribe' : 'Subscribe' }</button>
